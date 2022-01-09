@@ -128,6 +128,10 @@ export const TransactionProvider = ({ children }) => {
     useEffect(() => {
         checkIfWalletIsConnected();
         checkIfTransactionsExist();
+        ethereum.on('accountsChanged', function (accounts) {
+            if (!accounts) setCurrentAccount("");
+            window.location.reload();
+        });
     }, []);
     
     return (
